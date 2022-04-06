@@ -1,25 +1,32 @@
 package com.codezmr.service;
 
+import com.codezmr.dao.StudentDao;
 import com.codezmr.dto.Student;
+import com.codezmr.factory.StudentDaoFactory;
 
 public class StudentServiceImpl implements StudentService {
+	
+	StudentDao studentDao = StudentDaoFactory.getStudentDao();
 
 	@Override
 	public String addStudent(Student std) {
-
-		return null;
+		
+		String status  = studentDao.add(std);
+		
+		return status;
 	}
 
 	@Override
 	public Student searchStudent(String sid) {
-
-		return null;
+		
+		Student std = studentDao.search(sid);
+		return std;
 	}
 
 	@Override
 	public String deleteStudent(String sid) {
-
-		return null;
+		String status = studentDao.delete(sid);
+		return status;
 	}
 
 }

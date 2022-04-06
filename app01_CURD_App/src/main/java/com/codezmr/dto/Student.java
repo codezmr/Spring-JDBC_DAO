@@ -3,7 +3,7 @@ package com.codezmr.dto;
 public class Student {
 	private String sid;
 	private String sname;
-	private String sadddr;
+	private String saddr;
 	
 	public String getSid() {
 		return sid;
@@ -17,11 +17,11 @@ public class Student {
 	public void setSname(String sname) {
 		this.sname = sname;
 	}
-	public String getSadddr() {
-		return sadddr;
+	public String getSaddr() {
+		return saddr;
 	}
-	public void setSadddr(String sadddr) {
-		this.sadddr = sadddr;
+	public void setSaddr(String saddr) {
+		this.saddr = saddr;
 	}
 	
 	
