@@ -13,7 +13,19 @@ public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		String req_path = request.getRequestURI();
+		
+		if(req_path.endsWith("add.do")) {
+			
+		}
+		
+		if(req_path.endsWith("search.do")) {
+					
+				}
+		
+		if(req_path.endsWith("delete.do")) {
+			
+		}
 	}
 
 }
