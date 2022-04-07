@@ -1,15 +1,15 @@
 package com.codezmr.dto;
 
 public class Employee {
-	private int eno;
+	private String eno;
 	private String ename;
 	private float esal;
 	private String eaddr;
 	
-	public int getEno() {
+	public String getEno() {
 		return eno;
 	}
-	public void setEno(int eno) {
+	public void setEno(String eno) {
 		this.eno = eno;
 	}
 	public String getEname() {
