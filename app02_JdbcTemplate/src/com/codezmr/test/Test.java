@@ -13,16 +13,14 @@ public class Test {
 		ApplicationContext context = new ClassPathXmlApplicationContext("/com/codezmr/resources/applicationContext.xml");
 		EmployeeDao employeeDao = (EmployeeDao) context.getBean("employeeDao");
 		
-		/*
-		Employee employee = new Employee();
-		employee.setEno("E-222");
-		employee.setEname("ZMR");
-		employee.setEsal(80000);
-		employee.setEaddr("BPL");
 		
-		String status = employeeDao.add(employee);
-		System.out.println(status);
-		*/
+		/*
+		 * Employee employee = new Employee(); employee.setEno("E-222");
+		 * employee.setEname("ZMR"); employee.setEsal(80000); employee.setEaddr("BPL");
+		 * 
+		 * String status = employeeDao.add(employee); System.out.println(status);
+		 */
+	
 		
 		/*
 		 * Employee emp = employeeDao.search("E-222"); if(emp==null) {
@@ -35,15 +33,16 @@ public class Test {
 		 * System.out.println("Employee Address   : "+ emp.getEaddr()); }
 		 */
 		
-		Employee employee = new Employee();
-		employee.setEno("ABC");
-		employee.setEname("XYZ");
-		employee.setEsal(1000);
-		employee.setEaddr("BHARAT");
+		/*
+		 * Employee employee = new Employee(); employee.setEno("ABC");
+		 * employee.setEname("XYZ"); employee.setEsal(1000);
+		 * employee.setEaddr("BHARAT");
+		 * 
+		 * String status = employeeDao.update(employee); System.out.println(status);
+		 */
 		
-		String status = employeeDao.update(employee);
+		String status = employeeDao.delete("ABC");
 		System.out.println(status);
-		
 	}
 
 }

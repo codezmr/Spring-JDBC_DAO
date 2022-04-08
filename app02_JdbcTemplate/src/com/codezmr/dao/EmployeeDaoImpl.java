@@ -97,9 +97,30 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public String delete(int eno) {
-		// TODO Auto-generated method stub
-		return null;
+	public String delete(String eno) {
+		
+		String status = "";
+		
+		try {
+			Employee emp = search(eno);
+			if(emp == null) {
+				status = "Employee Not Existed";
+			}else {
+				int rowCount = jdbcTemplate.update("delete from employee_db where eno = '"+eno+"'");
+				if(rowCount == 1) {
+					
+					status = "Employee Deleted Successfully.";
+				}else {
+					status = "Employee Deletion Failure";
+				}
+			}
+			
+			
+		} catch (Exception e) {
+			status = "Employee Deletion Failure";
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 }
