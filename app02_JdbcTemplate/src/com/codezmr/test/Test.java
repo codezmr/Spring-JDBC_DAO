@@ -14,10 +14,10 @@ public class Test {
 		EmployeeDao employeeDao = (EmployeeDao) context.getBean("employeeDao");
 		
 		Employee employee = new Employee();
-		employee.setEno("E-111");
-		employee.setEname("ABC");
-		employee.setEsal(7000);
-		employee.setEaddr("IND");
+		employee.setEno("E-222");
+		employee.setEname("ZMR");
+		employee.setEsal(80000);
+		employee.setEaddr("BPL");
 		
 		String status = employeeDao.add(employee);
 		System.out.println(status);

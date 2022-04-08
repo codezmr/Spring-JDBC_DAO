@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.codezmr.dto.Employee;
-import com.codezmr.mapper.EmployeeRowMapper;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 	
@@ -20,10 +19,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 		String status = "";
 		try {
-			
-			//Employee emp1 = (Employee) jdbcTemplate.queryForObject("select * from emplyee_db where eno = "+ emp.getEno(), new EmployeeRowMapper());
-			
-			List<Employee> empList = jdbcTemplate.query("select * from employee_db where eno = '"+ emp.getEno()+"'", new EmployeeRowMapper());
+						
+			List<Employee> empList = jdbcTemplate.query("select * from employee_db where eno = '"+ emp.getEno()+"'", (rs, index)-> { // remove EmployeeRowMapper and use lambda expression
+				
+				Employee employee = new Employee();
+				employee.setEno(rs.getString("eno"));
+				employee.setEname(rs.getString("ename"));
+				employee.setEsal(rs.getFloat("esal"));
+				employee.setEaddr(rs.getString("eaddr"));
+				
+				return employee;
+			});
 				
 			  if(empList.isEmpty() == true) {
 					
