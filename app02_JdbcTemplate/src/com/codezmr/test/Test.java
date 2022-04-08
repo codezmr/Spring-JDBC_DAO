@@ -24,18 +24,26 @@ public class Test {
 		System.out.println(status);
 		*/
 		
-		Employee emp = employeeDao.search("E-222");
-		if(emp==null) {
-			System.out.println("Employee Not Existed.");
-		}else{
-			System.out.println("Employee Details");
-			System.out.println("-----------------------");
-			System.out.println("Employee Number    : "+ emp.getEno());
-			System.out.println("Employee Name      : "+ emp.getEname());
-			System.out.println("Employee Salary    : "+ emp.getEsal());
-			System.out.println("Employee Address   : "+ emp.getEaddr());
-		}
-	
+		/*
+		 * Employee emp = employeeDao.search("E-222"); if(emp==null) {
+		 * System.out.println("Employee Not Existed."); }else{
+		 * System.out.println("Employee Details");
+		 * System.out.println("-----------------------");
+		 * System.out.println("Employee Number    : "+ emp.getEno());
+		 * System.out.println("Employee Name      : "+ emp.getEname());
+		 * System.out.println("Employee Salary    : "+ emp.getEsal());
+		 * System.out.println("Employee Address   : "+ emp.getEaddr()); }
+		 */
+		
+		Employee employee = new Employee();
+		employee.setEno("ABC");
+		employee.setEname("XYZ");
+		employee.setEsal(1000);
+		employee.setEaddr("BHARAT");
+		
+		String status = employeeDao.update(employee);
+		System.out.println(status);
+		
 	}
 
 }

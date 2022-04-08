@@ -68,9 +68,32 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public Employee update(Employee employee) {
-		// TODO Auto-generated method stub
-		return null;
+	public String update(Employee employee) {
+		
+	
+		String status = "";
+		
+		try {
+			
+			Employee emp = search(employee.getEno());
+			if(emp == null) {
+				status = "Employee Not Existed";
+			}else {
+				
+				int rowCount = jdbcTemplate.update("update employee_db set ename = '"+employee.getEname()+"', esal = "+employee.getEsal()+", eaddr = '"+employee.getEaddr()+"' where eno = '"+employee.getEno()+"'");                                   
+				if(rowCount == 1) {
+					System.out.println("Employee Updated Successfully.");
+				}else {
+					System.out.println("Employee Update Failure.");
+				}
+			}
+			
+		} catch (Exception e) {
+			status = "Employee Update Failure.";
+			e.printStackTrace();
+		}
+		
+		return status;
 	}
 
 	@Override
