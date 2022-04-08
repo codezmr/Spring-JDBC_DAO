@@ -13,6 +13,7 @@ public class Test {
 		ApplicationContext context = new ClassPathXmlApplicationContext("/com/codezmr/resources/applicationContext.xml");
 		EmployeeDao employeeDao = (EmployeeDao) context.getBean("employeeDao");
 		
+		/*
 		Employee employee = new Employee();
 		employee.setEno("E-222");
 		employee.setEname("ZMR");
@@ -21,8 +22,19 @@ public class Test {
 		
 		String status = employeeDao.add(employee);
 		System.out.println(status);
+		*/
 		
-	
+		Employee emp = employeeDao.search("E-222");
+		if(emp==null) {
+			System.out.println("Employee Not Existed.");
+		}else{
+			System.out.println("Employee Details");
+			System.out.println("-----------------------");
+			System.out.println("Employee Number    : "+ emp.getEno());
+			System.out.println("Employee Name      : "+ emp.getEname());
+			System.out.println("Employee Salary    : "+ emp.getEsal());
+			System.out.println("Employee Address   : "+ emp.getEaddr());
+		}
 	
 	}
 

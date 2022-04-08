@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.codezmr.dto.Employee;
+import com.codezmr.mapper.EmployeeRowMapper;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 	
@@ -20,16 +21,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		String status = "";
 		try {
 						
-			List<Employee> empList = jdbcTemplate.query("select * from employee_db where eno = '"+ emp.getEno()+"'", (rs, index)-> { // remove EmployeeRowMapper and use lambda expression
-				
-				Employee employee = new Employee();
-				employee.setEno(rs.getString("eno"));
-				employee.setEname(rs.getString("ename"));
-				employee.setEsal(rs.getFloat("esal"));
-				employee.setEaddr(rs.getString("eaddr"));
-				
-				return employee;
-			});
+			List<Employee> empList = jdbcTemplate.query("select * from employee_db where eno = '"+ emp.getEno()+"'", new EmployeeRowMapper());
 				
 			  if(empList.isEmpty() == true) {
 					
@@ -54,9 +46,25 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 }
 
 	@Override
-	public Employee search(int eno) {
-		// TODO Auto-generated method stub
-		return null;
+	public Employee search(String eno) {
+		
+		Employee emp = null;
+		
+		try {
+			
+			  List<Employee> empList = jdbcTemplate.query("select * from employee_db where eno = '"+ eno+"'", new EmployeeRowMapper());
+			  boolean b = empList.isEmpty();
+			  if(b == true ) {
+				  emp = null;
+			  }else {
+				  emp = empList.get(0);
+			  }
+			  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return emp;
 	}
 
 	@Override
