@@ -16,12 +16,23 @@ public class Test {
 		//Step-2 Get Dao implementation (StudentDaoImpl) object 
 		StudentDao studentDao  = (StudentDao) context.getBean("studentDao");
 		
-		Student std = new Student();
-		std.setSid("S-111");
-		std.setSname("AAA");
-		std.setSaddr("IND");
-		String status = studentDao.add(std);
-		System.out.println(status);
+		/*
+		 * Student std = new Student(); std.setSid("S-111"); std.setSname("AAA");
+		 * std.setSaddr("IND"); String status = studentDao.add(std);
+		 * System.out.println(status);
+		 */
+		
+		Student std = studentDao.search("S-112");
+		
+		if(std == null) {
+			System.out.println("Student Not Existed.");
+		}else {
+		  System.out.println("Student Details");
+		  System.out.println("-----------------------");
+		  System.out.println("Studnet Id        : "+ std.getSid());
+		  System.out.println("Student Name      : "+ std.getSname());
+		  System.out.println("Studnet Address   : "+ std.getSaddr());
+		}
 		
 	}
 

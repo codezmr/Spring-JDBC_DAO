@@ -26,18 +26,16 @@ public class StudentDaoImpl implements StudentDao {
 		
 		/*
 		 * Provide NamedParameter in this example
-		 * and provide value to this NamedParmeter through Map object
-		 * */
-		
-		
+		 * and provide value to this NamedParmeter through Map object 
+		 */
+
 		String status = "";
-		
 		String query = "";
+		
 		try {
 			
 			/*
 			 * we have already data in the form of Student 'std'
-			 * 
 			 * We have to check student is exist or not if student is existed so return
 			 * Student existed else insert data into database and return inserted success
 			 */
@@ -60,8 +58,8 @@ public class StudentDaoImpl implements StudentDao {
 				/*
 				 * Mapper main intention is it will copy the data from ResultSet rs object
 				 * and data will be store in bean object
-				 * so finally all the bean object will be prepared 
-				 * that and all the bean object will be store in the form of List studentList object
+				 * so finally all the bean object will be prepared and
+				 * that all the bean object will be store in the form of List studentList object
 				 * */
 			});
 			
@@ -97,8 +95,38 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public Student search(String sid) {
-		// TODO Auto-generated method stub
-		return null;
+		Student std = null;
+		
+		try {
+			
+			String query = "select * from student_db where sid = :sid";
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("sid", sid);
+			
+			List<Student> studentList = namedParameterJdbcTemplate.query(query, params, (rs, index) ->{
+				
+				Student std1 = new Student();
+				std1.setSid(rs.getString("sid"));
+				std1.setSname(rs.getString("sname"));
+				std1.setSaddr(rs.getString("saddr"));
+				
+				return std1;
+				
+			});
+			
+			if(studentList.isEmpty() == true) {
+				std = null;
+				
+			}else {
+				std = studentList.get(0);
+			}
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		
+		return std;
 	}
 
 	@Override
