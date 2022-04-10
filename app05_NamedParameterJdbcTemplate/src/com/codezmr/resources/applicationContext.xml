@@ -39,7 +39,7 @@
 	 </bean>
 	 
 	 <!-- step : 3 Configure StudentDao -->
-	 <bean id="studentDao" class="com.codezmr.dao.StudentDao">
+	 <bean id="studentDao" class="com.codezmr.dao.StudentDaoImpl">
 	 	
 	 	<!-- inject NamedParameterJdbcTemplate class -->
 	 	<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
