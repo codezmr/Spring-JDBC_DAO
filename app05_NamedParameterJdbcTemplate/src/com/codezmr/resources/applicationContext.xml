@@ -7,6 +7,54 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
-
+	
+	<!-- steps
+	prepare:
+		1- Driver manager data source 
+	    2- NamedParameterJdbctemplate
+	    3- Configure StudentDao
+	    
+	    4- DriverManager data must be injected to NamedParameterJdbcTemplate
+	    
+	    5- NamedParameterJdbcTemplate will be injected to StudentDaoImpl class
+	        
+	 -->
+	 
+	  <!-- Step: 1 DriverManagerDataSource -->
+	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/spring_db" />
+		<property name="username" value="root"/>
+		<property name="password" value="codezmr"/>
+	  
+	 </bean>
+	 
+	 <!-- step: 2 NamedParameterJdbcTemplate -->
+	 <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">	
+	 	
+	 	<!-- inject DriverManagerDataSource through constructor dependency injection only , Not through setter method.... -->
+	 	<constructor-arg ref="dataSource" />
+	 
+	 </bean>
+	 
+	 <!-- step : 3 Configure StudentDao -->
+	 <bean id="studentDao" class="com.codezmr.dao.StudentDao">
+	 	
+	 	<!-- inject NamedParameterJdbcTemplate class -->
+	 	<property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
+	 
+	 </bean>
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
  	
  </beans>

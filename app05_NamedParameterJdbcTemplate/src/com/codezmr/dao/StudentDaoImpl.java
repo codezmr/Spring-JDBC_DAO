@@ -1,10 +1,13 @@
 package com.codezmr.dao;
 
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.codezmr.dto.Student;
 
 public class StudentDaoImpl implements StudentDao {
+	
+	DriverManagerDataSource dataSource;
 	
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
@@ -16,6 +19,7 @@ public class StudentDaoImpl implements StudentDao {
 	
 	@Override
 	public String add(Student std) {
+		
 		// TODO Auto-generated method stub
 		return null;
 	}
